@@ -1,0 +1,47 @@
+.home_home {
+    display: none;
+}
+.inner {
+    display: block;
+}
+
+.notice_board {
+    display: block;
+}
+
+.notice_story {
+    display: block;
+}
+
+article {
+    margin-left: 50px;
+    margin-top: -45px;
+    padding-right: 50px;
+    overflow-y: scroll;
+    height: 515px;
+    position: absolute;
+    width: 600px;
+}
+
+.no_back_list2 {
+    background-color: limegreen;
+    border: none;
+    float: right;
+    border-radius: 2px;
+    width: 70px;
+    height: 36px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    position: fixed;
+    margin-left: 60px;
+    margin-top: 435px;
+    font-weight: bolder;
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 36px;
+    z-index: 100;
+}
+
+.no_back_list2:active {
+    margin-top: 438px;
+}

@@ -1,0 +1,238 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/board.css">
+        <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+        <title>main</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.js"
+                integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+                crossorigin="anonymous">
+        </script>
+    </head>
+    <body>
+        <div class="menu">
+            <?php
+
+            ?>
+            <div id="gnb">
+            <ul>
+                <li class="menu1">
+                    <a>강상원</a>
+                    <div class="underbar1"></div>
+                    <div class="opcity_zero"></div>
+                      <dl class="dropdown2">
+                          <dd><a href="menu4.html">Vision</a></dd>
+                          <dd><a href="menu5.html">History</a></dd>
+                          <dd><a href="menu6.html">Information</a></dd>
+                     </dl> 
+                </li>
+                <li class="menu2">
+                    <a onclick="home();">홈</a>
+                    <div class="underbar2"></div>
+                </li>
+                <li class="menu3">
+                    <a>게시판</a>
+                    <div class="underbar3"></div>
+                    <dl class="dropdown">
+                     <dd><a role="button" onclick="menu_notice();">공지사항</a></dd>
+                     <dd><a role="button" onclick="menu_free();">자유게시판</a></dd>
+                     <dd><a role="button" onclick="menu_qna();">Q&amp;A</a></dd>
+                   </dl> 
+                </li>
+             </ul>
+            </div>
+            <div id="logina">
+                <p>로그인</p>
+            </div>
+            <div id="registera">
+                <p>회원가입</p>
+            </div>
+            <div id="login_success">
+                <?php
+                    if($member['user_id']) {
+                        echo $member['name']."(".$member['user_id'].")님 환영합니다."
+                    }else {
+                        
+                    }
+                ?>
+            </div>
+        </div>
+        
+        <div class="content">
+            
+            <div class="inner">
+                <img src="images/board.png">
+                <div class="free_board">
+                    <p>자유게시판</p>
+                </div>
+                <div class="notice_board">
+                    <p>공지사항</p>
+                </div>
+                <div class="QnA_board">
+                    <p>Q&amp;A</p>
+                </div>
+            </div>
+            
+            <div class="home_home">
+                <div class="wise">
+                    <img src="images/vision.png">
+                </div>
+                <div class="one-box">
+                </div>
+                <div class="two-box">
+                </div>
+                <div class="three-box">
+                </div>
+            </div>
+        </div>
+        
+        <div class="blackbar"></div>
+        
+        <div class="wrap">
+            <div class="login">
+                <p class="login_form_text">LOGIN</p>
+                <form method="post" action="index2.php">
+                    <div clSass="logintext id_bt">
+                        <input class="id_input" type="text" name="user_id"/>
+                        <label class="id_label">
+                            ID
+                        </label> 
+                    </div>
+                    <div class="logintext pw_bt">
+                        <input class="pw_input" type="password" name="pw"/>
+                        <label class="pw_label">
+                            PASSWORD
+                        </label>
+                    </div>
+                    <input class="submit_bt" type="submit" value="LOGIN" style="font-family: 'Noto Sans KR', sans-serif;"/>
+                </form>
+            </div>
+            <div class="register">
+                <p class="login_form_text">REGISTER</p>
+                <form action="index.php" method="post">
+                    <div class="registertext name_bt">
+                        <input class="name_input" type="text" name="name"/>
+                        <label class="name_label">
+                            NICKNAME
+                        </label> 
+                    </div>
+                    <div class="registertext id_bt2">
+                        <input class="id_input2" type="text" name="user_id"/>
+                        <label class="id_label2">
+                            ID
+                        </label>
+                    </div>
+                    <div class="registertext pw_bt2">
+                        <input class="pw_input2" type="password" name="pw"/>
+                        <label class="pw_label2">
+                            PASSWORD
+                        </label>
+                    </div>
+                    <div class="registertext repw_bt">
+                        <input class="repw_input" type="password" name="repw"/>
+                        <label class="repw_label">
+                            PASSWORD CHECK
+                        </label>
+                    </div>
+                    <div class="registertext memo_bt">
+                        <input class="memo_input" type="text" name="memo"/>
+                        <label class="memo_label">
+                            INTRODUCING
+                        </label>
+                    </div>
+                    <input class="submit_bt2" type="submit" value="REGISTER" style="font-family: 'Noto Sans KR', sans-serif;"/>
+                </form>
+            </div>
+        </div>
+        
+        <script>
+            
+            document.body.onload=function()
+            {
+            // 랜덤하게 불러올 이미지 번호를 0~3 사이에서 컴퓨터가 결정하도록 한다.
+            var imgnum = Math.round(Math.random() * 3);
+            var imgurl = "images/" + imgnum + ".jpg";
+            document.body.background = imgurl;
+            }
+            
+            $(".id_input").click(function() {
+                $(".id_label").animate({ "marginTop": "-22px" }, 100);
+                $(".id_label").animate({ "font-size": "13px" }, 100);
+            });
+            
+            $("body").not(document.getElementById('id_bt')).click(function() {
+                $(".id_label").animate({ "marginTop": "0" }, 100);
+                $(".id_label").animate({ "font-size": "16px" }, 100);
+            });
+
+            $("#logina").click(function() {
+                $(".blackbar").css("display", "block");
+                $(".blackbar").animate({ "opacity": "1" }, 500);
+                $(".Login").css("display", "block");
+                $(".Register").css ("display", "none");
+                $(".wrap").css({"display" : "block", "height" : "400px", "margin-top" : "100px"});
+                $(".wrap").animate({ 'marginTop': '0',  "opacity": "1" }, 300);
+            });
+            
+            $("#registera").click(function() {
+                $(".blackbar").css("display", "block");
+                $(".blackbar").animate({ "opacity": "1" }, 500);
+                $(".Register").css("display", "block");
+                $(".Login").css("display", "none");
+                $(".wrap").css({"display" : "block", "height" : "550px", "margin-top" : "100px"});
+                $(".wrap").animate({ 'marginTop': '0px',  "opacity": "1" }, 300);
+
+                });
+            
+            $(".blackbar").click(function() {
+                $(".blackbar").animate({ "opacity": "0" }, 500);
+                
+                $(".blackbar").promise().done(function(){
+                    $(".blackbar").css("display", "none");
+                });
+                
+                $(".wrap").animate({ 'marginTop': '100px',  "opacity": "0" }, 300);
+                
+                $(".blackbar").promise().done(function(){
+                    $(".wrap").css("display", "none");
+                });
+            });
+            
+            function menu_free() {
+                $(".inner").css("display", "block");
+                $(".free_board").css("display", "block");
+                $(".notice_board").css("display", "none");
+                $(".QnA_board").css("display", "none");
+                $(".home_home").css("display", "none");
+            }
+            function menu_notice() {
+                $(".inner").css("display", "block");
+                $(".notice_board").css("display", "block");
+                $(".free_board").css("display", "none");
+                $(".QnA_board").css("display", "none");
+                $(".home_home").css("display", "none");
+            }
+            function menu_qna() {
+                $(".inner").css("display", "block");
+                $(".QnA_board").css("display", "block");
+                $(".notice_board").css("display", "none");
+                $(".free_board").css("display", "none");
+                $(".home_home").css("display", "none");
+            }
+            function home() {
+                $(".inner").css("display", "none");
+                $(".QnA_board").css("display", "none");
+                $(".free_board").css("display", "none"); 
+                $(".notice_board").css("display", "none");
+                $(".home_home").css("display", "block");
+                
+            }
+            
+        </script>
+        
+        <div class="footer">
+            <p>주소: 경기도 군포시 오금동 875-6 I 대표전화: 010-4013-3263 I 이메일: eksovus@gmail.com</p>
+            <p>Copyright ⓒ 강상원 All Right Reserved.</p>
+        </div>
+    </body>
+</html>
